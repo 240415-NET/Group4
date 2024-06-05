@@ -13,4 +13,13 @@ public class User
 
     public List<Activity> activityList {get; set;} = new();
  
+    public User(){}
+    public User(string _userName)
+    {
+        userId = Guid.NewGuid();
+        userName = _userName;
+        userEmail = "";
+        user_FirstName = "";
+        user_LastName = "";
+    }
 }

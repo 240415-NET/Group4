@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ActivityTracker.Data;
+using ActivityTracker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddScoped<IUserService, UserService>(); // This adds our UserService, that our UserController then asks for
-//builder.Services.AddScoped<IUserStorageEFRepo, UserStorageEFRepo>();// This adds our UserStorageEFRepo (data-access layer), that our UserService asks for. 
+builder.Services.AddScoped<IUserService, UserService>(); // This adds our UserService, that our UserController then asks for
+builder.Services.AddScoped<IUserStorageEFRepo, UserStorageEFRepo>();// This adds our UserStorageEFRepo (data-access layer), that our UserService asks for. 
 
 
 string connectionString = File.ReadAllText(@"../../ConnectionString.txt");
