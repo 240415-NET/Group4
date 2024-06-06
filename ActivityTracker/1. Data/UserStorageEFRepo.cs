@@ -31,7 +31,14 @@ public class UserStorageEFRepo : IUserStorageEFRepo
         return userNameToDeleteFromUserService;
 
     }
-
+    
+    public async Task<string> UpdateUserInDBAsync(string oldUserName, string newUserName)
+    {
+        User? userToUpdate = await GetUserByUserNameFromDBAsync(oldUserName);
+        userToUpdate.userName = newUserName;
+        dataContext.SaveChangesAsync();
+        return newUserName;
+    }
 
 
 }

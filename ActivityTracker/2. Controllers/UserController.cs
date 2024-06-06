@@ -43,6 +43,19 @@ public class UserController : ControllerBase
         return Ok($"{userNameToDeleteFromFrontEnd} has been deleted.");
     }
 
+    [HttpPatch("{userNameToSwap}")]
+    public async Task<ActionResult> UpdateUserByUserName(string oldUserName, string newUserName)
+    {
+        try
+        {
+            await _userService.UpdateUserNameAsync(oldUserName, newUserName);
+            return Ok($"{oldUserName} has been changed to {newUserName}");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
 
 

@@ -8,5 +8,5 @@ public interface IUserService
     public Task<User> GetUserByUserNameAsync(string userNameToFindFromController);
     public Task<string> DeleteUserByUserNameAsync(string userNameToDeleteFromController);
 
-        
+    public Task<string> UpdateUserNameAsync(string oldUserName, string newUserName);
 }

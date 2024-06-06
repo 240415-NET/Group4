@@ -32,5 +32,11 @@ public class UserService : IUserService
         return userNameToDeleteFromController;
     }
 
+    public async Task<string> UpdateUserNameAsync(string oldUserName, string newUserName)
+    {
+        return await userStorageEFRepo.UpdateUserInDBAsync(oldUserName, newUserName);
+
+    }
+
 
 }
