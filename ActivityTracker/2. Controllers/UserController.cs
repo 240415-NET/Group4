@@ -39,7 +39,7 @@ public class UserController : ControllerBase
     [HttpDelete("{userNameToDeleteFromFrontEnd}")]
     public async Task<ActionResult> DeleteUserByUserName(string userNameToDeleteFromFrontEnd)
     {
-        _userService.DeleteUserByUserNameAsync(userNameToDeleteFromFrontEnd);
+        await _userService.DeleteUserByUserNameAsync(userNameToDeleteFromFrontEnd);
         return Ok($"{userNameToDeleteFromFrontEnd} has been deleted.");
     }
 
