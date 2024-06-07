@@ -1,5 +1,8 @@
+using System.Reflection.Metadata.Ecma335;
 using ActivityTracker.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using System.Linq;
 
 namespace ActivityTracker.Data;
 
@@ -20,5 +23,32 @@ public class ActivityStorageEFRepo : IActivityStorageEFRepo
         _context.activities.Add(newActivity);
         await _context.SaveChangesAsync();
         return activityDTO;
+    }
+
+    public async Task<string> DeleteActivityByActivityNameFromDBAsync(string activityDescriptionToDelete, string userName)
+    {
+        User userToDeleteFrom = await _context.users.SingleOrDefaultAsync(user=>user.userName == userName);
+        Guid userIdToDeleteFrom = userToDeleteFrom.userId;
+
+        List<Activity> userActivitiesFromDB = new List<Activity>();
+
+        userActivitiesFromDB = await _context.activities // Ask the context for the collection of activities in the database
+            .Where(activity => activity.user.userId == userIdToDeleteFrom) // Get every activity who's userId matches the one we want
+            .ToListAsync(); // Turn those items into a list
+
+        Activity activityToDelete = userActivitiesFromDB.SingleOrDefault(activity=>activity.activity_Description == activityDescriptionToDelete);
+        
+        _context.activities.Remove(activityToDelete);
+        await _context.SaveChangesAsync();
+        return activityDescriptionToDelete;
+
+    }
+
+    public async Task<string> DeleteActivityByActivityIdFromDBAsync(Guid activityIdToDelete)
+     {
+        Activity activityToDelete = await _context.activities.SingleOrDefaultAsync(activity => activity.activityID == activityIdToDelete);
+        _context.activities.Remove(activityToDelete);
+        await _context.SaveChangesAsync();
+        return activityToDelete.activity_Description;
     }
 }
