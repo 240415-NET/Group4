@@ -4,6 +4,7 @@ using System.Linq;
 using ActivityTracker.Data;
 using ActivityTracker.Models;
 using ActivityTracker.Services;
+using Azure.Identity;
 
 namespace ActivityTracker.Controllers;
 
@@ -34,4 +35,13 @@ public class ActivityController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpDelete("/Actvity {userName}")]
+    public async Task<ActionResult> DeleteActivity(string activityDescriptionToDelete, string userName)
+    {
+
+        await _activityService.DeleteActivityAsync(activityDescriptionToDelete, userName);
+        return Ok($"{activityDescriptionToDelete} has been deleted.");
+    }
+
 }

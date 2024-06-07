@@ -18,4 +18,10 @@ public class ActivityService : IActivityService
         return activityDTO;
     }
 
+
+public async Task<string>DeleteActivityAsync(string activityDescriptionToDelete, string userName)
+{
+        await _activityStorage.DeleteActivityFromDBAsync(activityDescriptionToDelete, userName);
+        return activityDescriptionToDelete;
+}
 }
