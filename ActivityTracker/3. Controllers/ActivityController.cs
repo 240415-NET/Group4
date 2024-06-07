@@ -24,6 +24,8 @@ public class ActivityController : ControllerBase
         try
         {
             await _activityService.AddNewActivityAsync(newActivity, userName);
+            // when we have a Get method, we may want to use that here (After the creation of the Activity)
+            // that way, we can get the object and then return the activity details rather than "good job" :)
 
             return Ok("good job");
         }
