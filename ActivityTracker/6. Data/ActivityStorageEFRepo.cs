@@ -25,7 +25,7 @@ public class ActivityStorageEFRepo : IActivityStorageEFRepo
         return activityDTO;
     }
 
-    public async Task<string> DeleteActivityFromDBAsync(string activityDescriptionToDelete, string userName)
+    public async Task<string> DeleteActivityByActivityNameFromDBAsync(string activityDescriptionToDelete, string userName)
     {
         User userToDeleteFrom = await _context.users.SingleOrDefaultAsync(user=>user.userName == userName);
         Guid userIdToDeleteFrom = userToDeleteFrom.userId;
@@ -42,5 +42,13 @@ public class ActivityStorageEFRepo : IActivityStorageEFRepo
         await _context.SaveChangesAsync();
         return activityDescriptionToDelete;
 
+    }
+
+    public async Task<string> DeleteActivityByActivityIdFromDBAsync(Guid activityIdToDelete)
+     {
+        Activity activityToDelete = await _context.activities.SingleOrDefaultAsync(activity => activity.activityID == activityIdToDelete);
+        _context.activities.Remove(activityToDelete);
+        await _context.SaveChangesAsync();
+        return activityToDelete.activity_Description;
     }
 }

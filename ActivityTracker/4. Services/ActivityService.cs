@@ -19,9 +19,15 @@ public class ActivityService : IActivityService
     }
 
 
-public async Task<string>DeleteActivityAsync(string activityDescriptionToDelete, string userName)
+public async Task<string>DeleteActivityByActivityNameAsync(string activityDescriptionToDelete, string userName)
 {
-        await _activityStorage.DeleteActivityFromDBAsync(activityDescriptionToDelete, userName);
+        await _activityStorage.DeleteActivityByActivityNameFromDBAsync(activityDescriptionToDelete, userName);
         return activityDescriptionToDelete;
 }
+
+public async Task<string> DeleteActivityByActivityIdAsync(Guid activityIdToDelete)
+{
+        return await _activityStorage.DeleteActivityByActivityIdFromDBAsync(activityIdToDelete);
+}
+
 }
