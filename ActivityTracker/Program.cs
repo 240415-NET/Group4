@@ -13,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserService, UserService>(); // This adds our UserService, that our UserController then asks for
 builder.Services.AddScoped<IUserStorageEFRepo, UserStorageEFRepo>();// This adds our UserStorageEFRepo (data-access layer), that our UserService asks for. 
+builder.Services.AddScoped<IActivityService, ActivityService>(); // 
+builder.Services.AddScoped<IActivityStorageEFRepo, ActivityStorageEFRepo>();// 
 
 
 string connectionString = File.ReadAllText(@"../../ConnectionString.txt");
