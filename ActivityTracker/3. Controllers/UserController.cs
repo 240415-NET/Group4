@@ -16,7 +16,8 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> PostNewUser(string userNameFromFrontEnd, string userEmail = "", string firstName = "")
+    
+       public async Task<ActionResult<User>> PostNewUser(string userNameFromFrontEnd, string userEmail = "", string firstName = "", string lastName ="")
     {
         try
         {
