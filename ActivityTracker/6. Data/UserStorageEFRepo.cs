@@ -17,4 +17,9 @@ public class UserStorageEFRepo : IUserStorageEFRepo
         return newUserSentFromUserService;
     }
 
+    public async Task<bool> DoesThisUserExistInDBAsync (string userNameToFindFromUserService)
+    {
+        return await dataContext.users.AnyAsync(user => user.userName == userNameToFindFromUserService);
+    }
+
 }
