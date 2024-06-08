@@ -16,8 +16,22 @@ public class UserService : IUserService
     }
     public async Task<User> CreateNewUserAsync(User userToCreateFromController)
     {
+        if(await UserExistsAsync(userToCreateFromController.userName))
+        {
+            throw new Exception("This user already exists in the database.");
+        }
+        if(String.IsNullOrEmpty(userToCreateFromController.userName))
+        {
+            throw new Exception("User name can't be blank.");
+        }
         await userStorageEFRepo.CreateNewUserInDBAsync(userToCreateFromController);
         return userToCreateFromController;
     }
+
+    public async Task<bool> UserExistsAsync(string userNameToFindFromController)
+    {
+        return await userStorageEFRepo.DoesThisUserExistInDBAsync(userNameToFindFromController);
+    }
+
 
 }

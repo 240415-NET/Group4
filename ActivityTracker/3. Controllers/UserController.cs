@@ -17,11 +17,12 @@ public class UserController : ControllerBase
 
     [HttpPost]
     
-       public async Task<ActionResult<User>> PostNewUser(string userNameFromFrontEnd, string userEmail = "", string firstName = "", string lastName ="")
+    public async Task<ActionResult<User>> PostNewUser(string userNameFromFrontEnd, string userEmail = "", string firstName = "", string lastName ="")
     {
         try
         {
-            User newUserToCreate = new User(userNameFromFrontEnd);
+            
+            User newUserToCreate = new User(userNameFromFrontEnd, userEmail, firstName, lastName);
             await _userService.CreateNewUserAsync(newUserToCreate);
             return Ok(newUserToCreate);
         }
