@@ -1,3 +1,4 @@
+using ActivityTracker.Models;
 using ActivityTracker.Data;
 
 namespace ActivityTracker.Services;
