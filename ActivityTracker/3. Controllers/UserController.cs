@@ -32,4 +32,22 @@ public class UserController : ControllerBase
         }
     }
 
+    [HttpGet]
+    public async Task<ActionResult<User>> GetUserByUserName(string userNameToFindFromFrontEnd)
+    {
+        try
+        {
+            User foundUser = await _userService.GetUserByUserNameAsync(userNameToFindFromFrontEnd);
+            if (foundUser == null)
+            {
+                return NotFound($"Username {userNameToFindFromFrontEnd} was not found in the database.");
+            }
+            return Ok(foundUser);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }    
+    }
+
 }
