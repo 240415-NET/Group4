@@ -16,12 +16,12 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    
-    public async Task<ActionResult<User>> PostNewUser(string userNameFromFrontEnd, string userEmail = "", string firstName = "", string lastName ="")
+
+    public async Task<ActionResult<User>> PostNewUser(string userNameFromFrontEnd, string userEmail = "", string firstName = "", string lastName = "")
     {
         try
         {
-            
+
             User newUserToCreate = new User(userNameFromFrontEnd, userEmail, firstName, lastName);
             await _userService.CreateNewUserAsync(newUserToCreate);
             return Ok(newUserToCreate);
@@ -30,6 +30,22 @@ public class UserController : ControllerBase
         {
             return BadRequest(e.Message);
         }
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult<string>> DeleteUser(string userName, Guid userId = default)
+    {
+        try
+        {
+            string result = await _userService.DeleteUserAsync(userName);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+
     }
 
 }
