@@ -11,6 +11,7 @@ public class Activity
     public string nameOfPerson {get;set;}
     public DateOnly Date_OfActivity {get;set;}
     public TimeOnly Time_OfActivity {get;set;}
+    public bool isComplete {get;set;}
     public User user {get; set;} = new();
 
     public Activity(){}
@@ -23,6 +24,7 @@ public class Activity
         nameOfPerson = activityDTO.nameOfPerson;
         Date_OfActivity = DateOnly.Parse(activityDTO.Date_OfActivity);
         Time_OfActivity = TimeOnly.Parse(activityDTO.Time_OfActivity);
+        isComplete = false;
         this.user = user;
     }
 
