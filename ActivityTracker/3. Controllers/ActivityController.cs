@@ -20,15 +20,15 @@ public class ActivityController : ControllerBase
     }
 
     [HttpPost("/Activity {userName}")]
-    public async Task<ActionResult> PostNewActivity(ActivityDTO newActivity, string userName)
+    public async Task<ActionResult<ActivityDTO>> PostNewActivity(ActivityDTO newActivity, string userName)
     {
         try
         {
-            await _activityService.AddNewActivityAsync(newActivity, userName);
+            ActivityDTO activity = await _activityService.AddNewActivityAsync(newActivity, userName);
             // when we have a Get method, we may want to use that here (After the creation of the Activity)
             // that way, we can get the object and then return the activity details rather than "good job" :)
 
-            return Ok("good job");
+            return Ok(activity);
         }
         catch(Exception e)
         {

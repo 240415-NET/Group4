@@ -8,4 +8,6 @@ public interface IUserService
     public Task<bool> UserExistsAsync(string userNameToFindFromController);
     public Task<User> GetUserByUserNameAsync(string userNameToFindFromController);
 
+    public Task<string> DeleteUserAsync(string userName);
+
 }

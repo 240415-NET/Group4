@@ -10,17 +10,17 @@ public class UserService : IUserService
 
     private readonly IUserStorageEFRepo userStorageEFRepo;
 
-    public UserService (IUserStorageEFRepo _userStorageEFRepoFromBuilder)
+    public UserService(IUserStorageEFRepo _userStorageEFRepoFromBuilder)
     {
         userStorageEFRepo = _userStorageEFRepoFromBuilder;
     }
     public async Task<User> CreateNewUserAsync(User userToCreateFromController)
     {
-        if(await UserExistsAsync(userToCreateFromController.userName))
+        if (await UserExistsAsync(userToCreateFromController.userName))
         {
             throw new Exception("This user already exists in the database.");
         }
-        if(String.IsNullOrEmpty(userToCreateFromController.userName))
+        if (String.IsNullOrEmpty(userToCreateFromController.userName))
         {
             throw new Exception("User name can't be blank.");
         }
@@ -45,4 +45,18 @@ public class UserService : IUserService
             throw new Exception(e.Message);
         }
     }
+
+    public async Task<string> DeleteUserAsync(string userNameFromController)
+    {
+        if (await UserExistsAsync(userNameFromController))
+        {
+            string result = await userStorageEFRepo.DeleteUserinDBAsync(userNameFromController);
+            return result;
+        }
+        else
+        {
+            throw new Exception("User not found.");
+        }
+    }
+
 }

@@ -5,21 +5,40 @@ using Microsoft.EntityFrameworkCore;
 namespace ActivityTracker.Data;
 public class UserStorageEFRepo : IUserStorageEFRepo
 {
-    private readonly DataContext dataContext;
+    private readonly DataContext _dataContext;
     public UserStorageEFRepo(DataContext dataContextFromBuilder)
     {
-        dataContext = dataContextFromBuilder;
+        _dataContext = dataContextFromBuilder;
     }
     public async Task<User> CreateNewUserInDBAsync(User newUserSentFromUserService)
     {
-        dataContext.users.Add(newUserSentFromUserService);
-        await dataContext.SaveChangesAsync();
+        _dataContext.users.Add(newUserSentFromUserService);
+        await _dataContext.SaveChangesAsync();
         return newUserSentFromUserService;
     }
 
-    public async Task<bool> DoesThisUserExistInDBAsync (string userNameToFindFromUserService)
+    public async Task<bool> DoesThisUserExistInDBAsync(string userNameToFindFromUserService)
     {
-        return await dataContext.users.AnyAsync(user => user.userName == userNameToFindFromUserService);
+            return await _dataContext.users.AnyAsync(user => user.userName == userNameToFindFromUserService);
+    }
+
+    public async Task<string> DeleteUserinDBAsync(string userName)
+    {
+        User? userToDelete = await _dataContext.users.FirstOrDefaultAsync(
+            user => user.userName == userName);
+
+        if (userToDelete != null)
+        {
+            _dataContext.users.Remove(userToDelete);
+            await _dataContext.SaveChangesAsync();
+            return $"{userToDelete.userName} was removed";
+        }
+        else
+        {
+            throw new Exception("User not found");
+
+        }
+
     }
 
     public async Task<User> GetUserByUserNameFromDBAsync(string userNameToFindFromUserService)

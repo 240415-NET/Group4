@@ -1,4 +1,4 @@
-
+using ActivityTracker.Models;
 namespace ActivityTracker.Data;
 
 public interface IActivityStorageEFRepo
