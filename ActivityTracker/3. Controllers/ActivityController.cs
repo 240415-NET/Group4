@@ -52,5 +52,18 @@ public class ActivityController : ControllerBase
         return Ok($"Activity Id: {activityIdToDelete} Activity Description: {activityDescriptionToDelete} has been deleted.");
     }
 
+    [HttpPatch("/UpdateActivityByActivityId")]
+    public async Task<ActionResult> UpdateActivityByActivityId(Guid activityIdToUpdateFromFrontEnd)
+    {
+        try
+        {
+            string activityDescriptionToUpdate = await _activityService.UpdateActivityByActivityIdAsync(activityIdToUpdateFromFrontEnd);
+            return Ok($"Activity Id \"{activityIdToUpdateFromFrontEnd}\", Activity Description \"{activityDescriptionToUpdate}\" has been updated.");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
 }

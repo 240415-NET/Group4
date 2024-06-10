@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ActivityTracker.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateInitialTables : Migration
+    public partial class newMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,6 +35,7 @@ namespace ActivityTracker.Migrations
                     nameOfPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_OfActivity = table.Column<DateOnly>(type: "date", nullable: false),
                     Time_OfActivity = table.Column<TimeOnly>(type: "time", nullable: false),
+                    isComplete = table.Column<bool>(type: "bit", nullable: false),
                     userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
