@@ -43,7 +43,7 @@ public class UserStorageEFRepo : IUserStorageEFRepo
 
     public async Task<User> GetUserByUserNameFromDBAsync(string userNameToFindFromUserService)
     {
-        User foundUser = await dataContext.users.SingleOrDefaultAsync(user => user.userName == userNameToFindFromUserService);
+        User foundUser = await _dataContext.users.SingleOrDefaultAsync(user => user.userName == userNameToFindFromUserService);
         return foundUser;
     }
 }
