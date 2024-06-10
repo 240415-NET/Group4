@@ -32,6 +32,18 @@ public class UserController : ControllerBase
         }
     }
 
+    [HttpGet]
+    public async Task<ActionResult<User>> GetUserByUserName(string userNameToFindFromFrontEnd)
+    {
+        try
+        {
+            User foundUser = await _userService.GetUserByUserNameAsync(userNameToFindFromFrontEnd);
+            if (foundUser == null)
+            {
+                return NotFound($"Username {userNameToFindFromFrontEnd} was not found in the database.");
+            }
+            return Ok(foundUser);
+
     [HttpDelete]
     public async Task<ActionResult<string>> DeleteUser(string userName, Guid userId = default)
     {
@@ -43,9 +55,7 @@ public class UserController : ControllerBase
         catch (Exception e)
         {
             return BadRequest(e.Message);
-        }
-
-
+        }    
     }
 
 }

@@ -33,6 +33,19 @@ public class UserService : IUserService
         return await userStorageEFRepo.DoesThisUserExistInDBAsync(userNameToFindFromController);
     }
 
+    public async Task<User> GetUserByUserNameAsync(string userNameToFindFromController)
+    {
+        try
+        {
+            User foundUser = await userStorageEFRepo.GetUserByUserNameFromDBAsync(userNameToFindFromController);
+            return foundUser;
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
     public async Task<string> DeleteUserAsync(string userNameFromController)
     {
         if (await UserExistsAsync(userNameFromController))
@@ -45,6 +58,5 @@ public class UserService : IUserService
             throw new Exception("User not found.");
         }
     }
-
 
 }
