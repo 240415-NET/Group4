@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ActivityTracker.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240607174330_CreateInitialTables")]
-    partial class CreateInitialTables
+    [Migration("20240610171432_newMigration")]
+    partial class newMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,9 @@ namespace ActivityTracker.Migrations
                     b.Property<string>("activity_Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isComplete")
+                        .HasColumnType("bit");
 
                     b.Property<string>("nameOfPerson")
                         .IsRequired()

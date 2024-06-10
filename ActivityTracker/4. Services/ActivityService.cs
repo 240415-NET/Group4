@@ -31,4 +31,16 @@ public class ActivityService : IActivityService
         return await _activityStorage.DeleteActivityByActivityIdFromDBAsync(activityIdToDelete);
     }
 
+    public async Task<string> UpdateActivityByActivityIdAsync(Guid activityIdToUpdateFromController)
+    {
+        try
+        {
+            return await _activityStorage.UpdateActivityByActivityIdFromDBAsync(activityIdToUpdateFromController);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);  
+        }
+    }
+
 }

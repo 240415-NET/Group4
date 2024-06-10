@@ -7,5 +7,6 @@ public interface IActivityStorageEFRepo
 
     public Task<string> DeleteActivityByActivityNameFromDBAsync(string activityDescriptionToDelete, string userName);
     public Task<string> DeleteActivityByActivityIdFromDBAsync(Guid activityIdToDelete);
+     public Task<string> UpdateActivityByActivityIdFromDBAsync(Guid activityIdToUpdateFromService);
 
 }

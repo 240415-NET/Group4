@@ -38,6 +38,9 @@ namespace ActivityTracker.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isComplete")
+                        .HasColumnType("bit");
+
                     b.Property<string>("nameOfPerson")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

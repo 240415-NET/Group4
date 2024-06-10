@@ -51,4 +51,15 @@ public class ActivityStorageEFRepo : IActivityStorageEFRepo
         await _dataContext.SaveChangesAsync();
         return activityToDelete.activity_Description;
     }
+
+    public async Task<string> UpdateActivityByActivityIdFromDBAsync(Guid activityIdToUpdateFromService)
+    {
+        Activity activityToUpdate = await _dataContext.activities.SingleOrDefaultAsync(activity => activity.activityID == activityIdToUpdateFromService);
+        if (activityToUpdate == null)
+            throw new Exception($"Activity Id \"{activityIdToUpdateFromService}\" was not found in the database.");
+        
+        activityToUpdate.isComplete = true;
+        await _dataContext.SaveChangesAsync();
+        return activityToUpdate.activity_Description;
+    }
 }
