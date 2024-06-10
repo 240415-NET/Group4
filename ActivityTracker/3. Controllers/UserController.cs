@@ -43,6 +43,12 @@ public class UserController : ControllerBase
                 return NotFound($"Username {userNameToFindFromFrontEnd} was not found in the database.");
             }
             return Ok(foundUser);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
     [HttpDelete]
     public async Task<ActionResult<string>> DeleteUser(string userName, Guid userId = default)
