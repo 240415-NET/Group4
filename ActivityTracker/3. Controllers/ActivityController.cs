@@ -36,6 +36,22 @@ public class ActivityController : ControllerBase
         }
     }
 
+        [HttpGet("/GetActivitiesbyUserName {userName}")]
+    public async Task<ActionResult<List<ActivityDTO>>> GetAllItemsForAUser(string userName)
+    {
+        try
+        {
+            //Creating a list to eventually *hopefully* return to our front end
+            List<ActivityDTO> activitiesFound = await _activityService.GetAllActivitiesbyUserNameAsync(userName);
+
+            return Ok(activitiesFound);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
     [HttpDelete("/DeleteActivityByActivityName {userName}")]
     public async Task<ActionResult> DeleteActivityByActivityName(string activityDescriptionToDelete, string userName)
     {

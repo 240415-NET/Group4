@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ActivityTracker.Migrations
 {
     /// <inheritdoc />
-    public partial class newMigration : Migration
+    public partial class Thirdmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

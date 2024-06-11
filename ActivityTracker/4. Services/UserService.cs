@@ -59,4 +59,20 @@ public class UserService : IUserService
         }
     }
 
-}
+    public async Task<string> UpdateUsernameAsync(UpdateUsernameDTO userNameFromController)
+    {
+          
+          if (await UserExistsAsync(userNameFromController.oldUserName))
+        {
+            
+            
+            return await userStorageEFRepo.UpdateUserinDBAsync(userNameFromController);
+            
+        }
+        else
+        {
+            throw new Exception("User not found.");
+        }
+    }
+    }
+

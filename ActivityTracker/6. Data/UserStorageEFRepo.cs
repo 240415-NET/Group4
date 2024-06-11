@@ -46,4 +46,23 @@ public class UserStorageEFRepo : IUserStorageEFRepo
         User foundUser = await _dataContext.users.SingleOrDefaultAsync(user => user.userName == userNameToFindFromUserService);
         return foundUser;
     }
+
+    public async Task<string> UpdateUserinDBAsync(UpdateUsernameDTO usernamesToSwapFromUserService)
+    {
+         User? userToUpdate = await _dataContext.users
+            .SingleOrDefaultAsync(user => user.userName == usernamesToSwapFromUserService.oldUserName);
+
+            if(userToUpdate == null)
+        {
+            throw new Exception("User not found!");
+        }
+        else
+        {
+            userToUpdate.userName = usernamesToSwapFromUserService.newUserName;
+        }
+
+        await _dataContext.SaveChangesAsync();
+
+        return usernamesToSwapFromUserService.newUserName;
+    }
 }

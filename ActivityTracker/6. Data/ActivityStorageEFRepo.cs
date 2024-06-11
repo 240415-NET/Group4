@@ -62,4 +62,15 @@ public class ActivityStorageEFRepo : IActivityStorageEFRepo
         await _dataContext.SaveChangesAsync();
         return activityToUpdate.activity_Description;
     }
+
+    public async Task<List<Activity>> GetAllActivitiesForUserFromDBAsync(string userNameFromService)
+    {
+        //Here we will ask the database for all items associated with the user who's guid matches
+        //the userIdFromService, using LINQ methods (and lambdas :c )
+
+        return await _dataContext.activities //So we ask our context for the collection of Item objects in the database
+            .Include(item => item.user) //We ask entity framework to also grab the associated User object from the User table
+            .Where(item => item.user.userName == userNameFromService) //We then ask for every item who's owner's UserId matches the userIdFromService
+            .ToListAsync(); //Finally, we turn those items into a list
+}
 }
