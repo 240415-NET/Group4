@@ -1,6 +1,7 @@
 using ActivityTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using ActivityTracker.Services;
+using ActivityTracker.Data;
 
 namespace ActivityTracker.Controllers;
 
@@ -63,5 +64,22 @@ public class UserController : ControllerBase
             return BadRequest(e.Message);
         }    
     }
+
+    [HttpPatch]
+
+    public async Task<ActionResult<UpdateUsernameDTO>> UpdateUserByUserName(UpdateUsernameDTO usernameToSwap)
+    {
+        try{
+            //UpdateUsernameDTO user = usernameToSwap;
+            await _userService.UpdateUsernameAsync(usernameToSwap);
+            return Ok ($"{usernameToSwap.oldUserName}'s has been changed to:{usernameToSwap.newUserName}.");
+        }
+        catch(Exception e)
+        {
+            return  BadRequest(e.Message);
+        }
+    }
+
+
 
 }

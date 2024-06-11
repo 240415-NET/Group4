@@ -9,5 +9,6 @@ public interface IActivityService
     public Task<string>DeleteActivityByActivityNameAsync(string activityDescriptionToDelete, string userName);
     public Task<string> DeleteActivityByActivityIdAsync(Guid activityIdToDelete);
     public Task<string> UpdateActivityByActivityIdAsync(Guid activityIdToUpdateFromController);
+    public  Task<List<ActivityDTO>> GetAllActivitiesbyUserNameAsync(string userName);
 
 }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ActivityTracker.Data;
 
 
 namespace ActivityTracker.Models;
@@ -22,6 +23,6 @@ public class User
         user_FirstName = _user_FirstName;
         user_LastName = _user_LastName;
     }
- 
+   
  
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ActivityTracker.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240610171432_newMigration")]
-    partial class newMigration
+    [Migration("20240611003221_Thirdmigration")]
+    partial class Thirdmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

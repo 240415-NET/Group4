@@ -1,3 +1,4 @@
+using ActivityTracker.Data;
 using ActivityTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,5 +10,5 @@ public interface IUserService
     public Task<User> GetUserByUserNameAsync(string userNameToFindFromController);
 
     public Task<string> DeleteUserAsync(string userName);
-
+    public Task<string> UpdateUsernameAsync(UpdateUsernameDTO userNameToChangeFromController);
 }
