@@ -4,7 +4,7 @@ namespace ActivityTracker.Data;
 
 public class ActivityDTO
 {
-    
+    public Guid activityId {get; set;}
     public string activity_Description {get;set;} 
     public string nameOfPerson {get;set;}
     public string Date_OfActivity {get; set;}
@@ -15,6 +15,7 @@ public class ActivityDTO
     public ActivityDTO(Activity activity)
     {
         
+        activityId = activity.activityID;
         activity_Description = activity.activity_Description;
         nameOfPerson = activity.nameOfPerson;
         Date_OfActivity = activity.Date_OfActivity.ToString();
