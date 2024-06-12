@@ -22,7 +22,7 @@ public class ActivityStorageEFRepo : IActivityStorageEFRepo
 
         _dataContext.activities.Add(newActivity);
         await _dataContext.SaveChangesAsync();
-        return activityDTO;
+        return new ActivityDTO(newActivity);
     }
 
     public async Task<string> DeleteActivityByActivityNameFromDBAsync(string activityDescriptionToDelete, string userName)
