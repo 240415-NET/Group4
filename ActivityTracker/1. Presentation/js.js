@@ -172,11 +172,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         activityList.innerHTML = '';
 
-        let listItemValue = 0;
         activities.forEach(activity => {
-            listItemValue++;
             const listItem = document.createElement('option');
-            listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}`;
+            const completedStatus = activity.isComplete ? ' : COMPLETED' : ' ';
+            listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}  ${completedStatus}`;
             listItem.value = activity.activityId;
             activityList.add(listItem);
         });
