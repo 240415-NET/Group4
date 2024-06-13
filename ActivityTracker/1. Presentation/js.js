@@ -11,7 +11,7 @@ const loginButton = document.getElementById("login-button");
 const logoutButton = document.getElementById("logout-button");
 const createUserButton = document.getElementById("create-user-button");
 //const addNewActivity = document.getElementById("add-new-activity");
-const deleteActivity = document.getElementById("delete-activity");
+//const deleteActivity = document.getElementById("delete-activity-button");
 
 // Text & lists
 const welcomeMessage = document.getElementById("welcome-message");
@@ -196,6 +196,45 @@ if(storedUser)
         }
 
     }); //End of updateActivityButton event listener
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DELETE ACTIVITY
+    deleteActivityButton.addEventListener("click", async () =>{
+
+        const activityIdToDelete = activityList.value;
+        if (activityIdToDelete)
+            {
+            try
+            {
+                const response = await fetch(`http://localhost:5289/DeleteActivityByActivityId?activityIdToDelete=${activityIdToDelete}`, {
+                    method: "DELETE"
+                });
+                const storedUser = JSON.parse(localStorage.getItem("user"));
+                fetchUserActivities(storedUser.userName);
+            }
+            catch(error)
+            {
+                console.error("Error deleting activity: ", error);
+            }
+        }
+    }); // End of deleteActivityButton.addEventListener("click",...
 
 }) //EndDOMContentLoaded listener
 
