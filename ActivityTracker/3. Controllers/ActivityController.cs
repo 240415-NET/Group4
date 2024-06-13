@@ -36,7 +36,7 @@ public class ActivityController : ControllerBase
         }
     }
 
-        [HttpGet("/GetActivitiesbyUserName {userName}")]
+        [HttpGet("/GetActivitiesbyUserName/{userName}")]
     public async Task<ActionResult<List<ActivityDTO>>> GetAllItemsForAUser(string userName)
     {
         try

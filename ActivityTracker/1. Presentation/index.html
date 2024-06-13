@@ -6,6 +6,47 @@
     <title>Activity Tracker</title>
 </head>
 <body>
+
+    <h1>Activity Tracker</h1>
+
+    <div id="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="username">
+        <br>
+        <br>
+        <button id="login-button">Login</button>
+        <button id="show-create-user-button">Create User</button>
+    </div>
+
+    <div id="create-user-container" style="display: none;">
+        <h2>Create User</h2>
+        <input type="text" id="new-username" placeholder="New Username">
+        <br>
+        <br>
+        <button id="create-user-button">Create</button>
+        <button id="cancel-create-user-button">Cancel</button>
+    </div>
+
+    <div id="user-container" style="display: none;">
+        <h2 id="welcome-message">Welcome Ermintrude</h2>
+
+        <h4>Your Activites</h4>
+
+        
+        <select name="" id="activity-list" size="10" style="width: 40%">
+        </select>
+        <br>
+        <br>
+        <button id="create-activity-button">Create New Activity</button>
+        <button id="update-activity-button">Mark Activity Completed</button>
+        <button id="delete-activity-button">Delete Activity</button>
+        <br>
+        <br>
+        
+        <button id="logout-button">Logout</button>
+
+    </div>
+
     <script src = "js.js"></script>
 </body>
 </html>
