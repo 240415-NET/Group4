@@ -35,17 +35,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
         if (username) {
 
-            try {
-    
+            try {    
                 const response = await fetch(`http://localhost:5289/users?userNameToFindFromFrontEnd=${username}`);
                 const user = await response.json();
 
                 localStorage.setItem('user', JSON.stringify(user));
-
-                updateUIForLoggedInUser(user);
-
-            } catch (error) {
+                updateUIForLoggedInUser(user);                 
+            }
+            catch (error) 
+            {
                 console.error('Error logging in: ', error);
+                alert(`Unable to login with username: ${username}`);                             
             }
 
         } //End If to check username for content
@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     logoutButton.addEventListener('click', () => {
 
         localStorage.removeItem('user');
-        usernameInput.value = null;          
 
+        usernameInput.value = null;          
         loginContainer.style.display = 'block';
         userContainer.style.display = 'none';
 
