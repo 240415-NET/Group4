@@ -6,6 +6,44 @@
     <title>Activity Tracker</title>
 </head>
 <body>
+    <!-- Initial screen to log in -->
+    <div id = "login-container">
+        <h2>Login</h2>
+        <input type="text" id="existingUserNameFromUser" placeholder="username">
+        <br>
+        <button id="login-button">Login</button>
+        <button id="show-create-user-button">Create User</button>
+    </div>
+
+    <!-- Screen to create a new user -->
+    <div id = "create-new-user-container" style="display:none;">
+        <h2>Create User</h2>
+        <form id="create-user-form">
+            <input type = "text" id = "create-new-username" placeholder = "new username" required>
+            <input type = "text" id = "create-new-email" placeholder = "email"> 
+            <input type = "text" id = "create-new-first-name" placeholder = "firstname"> 
+            <input type = "text" id = "create-new-last-name" placeholder = "last name">
+            <button type = "submit" id = "create-user-button">Create</button>
+
+        </form>
+        <br>
+        <button id="cancel-create-user-button">Cancel</button>
+    </div>
+
+     <!-- Screen when a user is logged in -->
+    <div id = "logged-in-user-container" style="display: none;">
+        <h2 id="welcome-message"></h2>
+        <h4>Here are your activities:</h4>
+        <br>
+        <ol id="activities-list"></ol>
+        <br>
+        <button id="add-new-activity"></button>
+        <button id="delete-activity"></button>
+        <button id = "logout-button">Logout</button>
+        
+    </div>
+
     <script src = "js.js"></script>
+    
 </body>
 </html>
