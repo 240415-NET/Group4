@@ -6,14 +6,19 @@
     <title>Activity Tracker</title>
 </head>
 <body>
-    <!-- Initial screen to log in -->
-    <div id = "login-container">
+
+
+    <h1>Activity Tracker</h1>
+
+    <div id="login-container">
         <h2>Login</h2>
-        <input type="text" id="existingUserNameFromUser" placeholder="username">
+        <input type="text" id="username" placeholder="username">
+        <br>
         <br>
         <button id="login-button">Login</button>
         <button id="show-create-user-button">Create User</button>
     </div>
+
 
     <!-- Screen to create a new user -->
     <div id = "create-new-user-container" style="display:none;">
@@ -37,14 +42,23 @@
      <!-- Screen when a user is logged in -->
     <div id = "logged-in-user-container" style="display: none;">
         <h2 id="welcome-message"></h2>
-        <h4>Here are your activities:</h4>
-        <br>
-        <ol id="activities-list"></ol>
-        <br>
-        <button id="add-new-activity"></button>
-        <button id="delete-activity"></button>
-        <button id = "logout-button">Logout</button>
+
+        <h4>Your Activites</h4>
+
         
+        <select name="" id="activity-list" size="10" style="width: 40%">
+        </select>
+        <br>
+        <br>
+        <button id="create-activity-button">Create New Activity</button>
+        <button id="update-activity-button">Mark Activity Completed</button>
+        <button id="delete-activity-button">Delete Activity</button>
+        <br>
+        <br>
+        
+        <button id="logout-button">Logout</button>
+
+
     </div>
 
     <script src = "js.js"></script>
