@@ -19,7 +19,7 @@ public class ActivityController : ControllerBase
         _activityService = activityService;
     }
 
-    [HttpPost("/Activity {userName}")]
+    [HttpPost("/Activity/{userName}")]
     public async Task<ActionResult<ActivityDTO>> PostNewActivity(ActivityDTO newActivity, string userName)
     {
         try
