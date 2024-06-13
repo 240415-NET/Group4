@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         welcomeMessage.textContent = `Welcome ${user.userName}!`;
         userContainer.style.display = 'block';
 
-        //fetchUserActivities(user)
+        fetchUserActivities(user.userName);
 
     } //end updateUIforLoggedInUser
 
@@ -72,7 +72,35 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }); //end of the logoutButton event listener
 
 
+    async function fetchUserActivities(username) {
+        try {
+        
+            const response = await fetch(`http://localhost:5289/GetActivitiesbyUserName/${username}`);
+            const activities = await response.json();
 
+            renderActivityList(activities);
+
+        } catch (error) {
+            console.error('Error fetching activities: ', error);
+        }
+
+    } // End fetchUserActivities
+
+
+    function renderActivityList(activities) {
+
+        activityList.innerHTML = '';
+
+        let listItemValue = 0;
+        activities.forEach( activity => {
+            listItemValue++;
+            const listItem = document.createElement('option');
+            listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}`;
+            listItem.value = activity.activityId;
+            activityList.add(listItem);
+        });
+
+    } // End renderActivitiesList
 
 
 
