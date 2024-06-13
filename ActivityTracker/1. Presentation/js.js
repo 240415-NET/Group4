@@ -18,8 +18,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const createUserButton = document.getElementById('create-user-button');
     const cancelCreateUserButton = document.getElementById('cancel-create-user-button');
 
-    //elements related to adding a new activity
-
+    //elements related to activities
+    const createActivityButton = document.getElementById('create-activity-button');
+    const updateActivityButton = document.getElementById('update-activity-button');
+    const deleteActivityButton = document.getElementById('delete-activity-button');
 
 
     //if a user is already logged in...
@@ -103,15 +105,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
     } // End renderActivitiesList
 
 
+    updateActivityButton.addEventListener('click', async () => {
 
+        const activityIdToUpdate = activityList.value;
 
+        if (activityIdToUpdate) // if an activity if selected in the activity list
+        {
+            try 
+            {
+                const response = await fetch(`http://localhost:5289/UpdateActivityByActivityId?activityIdToUpdateFromFrontEnd=${activityIdToUpdate}`);  
+            }
+            catch (error)
+            {
+                console.error('Error updating activity: ', error);
+            }
+        }
 
-
-
-
-
-
-
-
+    }); //End of updateActivityButton event listener
 
 }) //EndDOMContentLoaded listener
