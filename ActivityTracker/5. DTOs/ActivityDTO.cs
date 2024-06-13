@@ -9,6 +9,7 @@ public class ActivityDTO
     public string nameOfPerson {get;set;}
     public string Date_OfActivity {get; set;}
     public string Time_OfActivity {get; set;}
+    public bool isComplete {get; set;}
     public ActivityDTO(){}
 
 
@@ -20,7 +21,7 @@ public class ActivityDTO
         nameOfPerson = activity.nameOfPerson;
         Date_OfActivity = activity.Date_OfActivity.ToString();
         Time_OfActivity = activity.Time_OfActivity.ToString();
-       
+        isComplete = activity.isComplete;
     }
 
 }
