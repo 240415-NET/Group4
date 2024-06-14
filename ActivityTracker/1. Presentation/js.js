@@ -189,13 +189,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (activityIdToUpdate) // if an activity if selected in the activity list
         {
-            try {
-                const response = await fetch(`http://localhost:5289/UpdateActivityByActivityId?activityIdToUpdateFromFrontEnd=${activityIdToUpdate}`);
-            }
+            try 
+            {
+                const response = await fetch(`http://localhost:5289/UpdateActivityByActivityId?activityIdToUpdateFromFrontEnd=${activityIdToUpdate}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type' : 'text/plain; charset=utf-8'
+                        }
+                    },
+                );
+            }          
             catch (error) {
                 console.error('Error updating activity: ', error);
             }
         }
+        refreshUserActivityList();
 
     }); //End of updateActivityButton event listener
 
@@ -256,5 +264,12 @@ document.addEventListener("DOMContentLoaded", () => {
     //             }
     //         });
     // }); // END of deleteUserButton Listner
+
+    function refreshUserActivityList() {
+        //get the current user from local storage, then get the user's activities
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
+        fetchUserActivities(loggedInUser.userName);
+
+    } //end refreshUserActivities
 
 }) //EndDOMContentLoaded listener
