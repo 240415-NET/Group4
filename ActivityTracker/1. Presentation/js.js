@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } //End If to check username for content
     }) //End of the login button event listener
-    const loggedInUser = JSON.parse(localStorage.getItem('user')); // added this so we have a global user object to use instead of declaring it insinde of multiple 
 
     function updateUIForLoggedInUser(user) {
 
@@ -229,6 +228,8 @@ document.addEventListener("DOMContentLoaded", () => {
             time_OfActivity: timeFromForm.value
         };
 
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
+
         try {
             const response = await fetch(`http://localhost:5289/Activity/${loggedInUser.userName}`, {
                 method: 'POST',
@@ -249,6 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cancelAddActivityButton.addEventListener('click', async (event) => {
         event.preventDefault();
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
         updateUIForLoggedInUser(loggedInUser);
 
     }); //End of cancelAddActivityButton listner
