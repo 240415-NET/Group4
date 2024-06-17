@@ -66,7 +66,9 @@
         <button id="delete-activity-button">Delete Activity</button>
         <br>
         <br>
-
+        <button id="user-info-button">User Info</button>
+        <br>
+        <br>
         <button id="logout-button">Logout</button>
 
 
@@ -87,6 +89,39 @@
         </form>
     </div>
 
+    <div id="user-info-container" style="display:none">
+
+        <h2>User Info</h2>
+        <!-- <p id="userinfo-list"></p> -->
+        <ul id="userinfo-list">
+            <li value=">Username">Username</li>
+            <li value=">Email">Email</li>
+            <li value = "First Name">First Name</li>
+            <li value = "Last Name">Last Name</li>
+        </ul>
+        <!-- <select name="" id="userinfo-list" size="10" style="width: 40%">
+        </select> -->
+        <br>
+        <br>
+        <button id="update-username-button">Update Username</button>
+        <button id="delete-user-button">Delete User</button> 
+        <button id="return-home-button">Return to Home</button> 
+
+        <br>   
+        <br>
+
+    <div id="update-username-container" style="display: none;">
+        <h4>Update UserName</h4>
+        <form id="update-username-form"; display: table;>
+            
+                <!-- <p><label>Old UserName:</label> <input type="text" id="update-old-username" placeholder="" required></p><br>  -->
+                <p><label>New UserName:</label> <input type="text" id="update-new-username" placeholder="" required></p><br>
+                <p><button type="submit" id="save-userInfo-button" >Save</button> 
+                <button type="reset" id="cancel-updateUser-button" style="margin-left: 50px;">Cancel</button> </p> 
+            
+            
+         </form> 
+    </div>
     <script src="js.js"></script>
 
 </body>

@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginContainer = document.getElementById("login-container");
     const userContainer = document.getElementById("logged-in-user-container");
     const createUserContainer = document.getElementById("create-new-user-container");
+    const userInfoContainer = document.getElementById("user-info-container");
     const activityForm = document.getElementById('add-activity-form');
+    const updateUserNameContainer = document.getElementById('update-username-container');
+    const updateUserNameForm = document.getElementById('update-username-form');
 
     // Buttons
     const loginButton = document.getElementById("login-button");
@@ -15,10 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
     //const deleteActivity = document.getElementById("delete-activity-button");
     const deleteUserButton = document.getElementById('delete-user-button');
     const cancelAddActivityButton = document.getElementById('cancel-add-activity-button');
+    const userInfoButton = document.getElementById('user-info-button');
+    const updateUserNameButton = document.getElementById('update-username-button')
+    const ReturnHomeButton = document.getElementById('return-home-button');
+    const saveUserInfoButton = document.getElementById('save-userInfo-button');
+    const cancelUpdateUserButton = document.getElementById('cancel-updateUser-button');
+    
+    
+    
 
     // Text & lists
     const welcomeMessage = document.getElementById("welcome-message");
     const activityList = document.getElementById("activity-list");
+    const userInfoList = document.getElementById("userinfo-list")
 
     // Log in existing user
     const usernameInput = document.getElementById('username');
@@ -32,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const newUserFirstName = document.getElementById("create-new-first-name");
     const newUserLastName = document.getElementById("create-new-last-name");
     const newUserForm = document.getElementById("create-user-form");
+    const updateOldUserName = document.getElementById("update-old-username");
+    const updateNewUserName = document.getElementById("update-new-username");
 
 
     //elements related to activities
@@ -80,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         welcomeMessage.textContent = `Welcome ${user.userName}!`;
         userContainer.style.display = 'block';
         showCreateActivityForm.style.display = 'none';
+        
 
         fetchUserActivities(user.userName);
 
@@ -294,4 +309,133 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }); // End of deleteActivityButton.addEventListener("click",...
 
+    // MOVE FROM ACTIVITY SCREEN TO VIEW USER PROFILE WHEN YOU CLICK USER INFO BUTTON
+    userInfoButton.addEventListener('click', () => {
+        userContainer.style.display = 'none';
+        userInfoContainer.style.display = 'block';
+        
+    });//End UserInfo button listener
+
+    // MOVE FROM USRE INFO SCREEN BACK TO ACTIVITIES WHEN YOU CLICK CANCEL
+    ReturnHomeButton.addEventListener('click', () => {
+        userContainer.style.display = 'block';
+        userInfoContainer.style.display = 'none';
+    });//End ReturnHome  button listener
+
+     //Listening for a click on the userInfo button
+     userInfoButton.addEventListener('click', async () => {
+
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
+            fetchUserInfo(loggedInUser.userName)
+
+       
+    }) //End of the login button event listener
+
+    async function fetchUserInfo(username) {
+        try {
+
+            const response = await fetch(`http://localhost:5289/users?userNameToFindFromFrontEnd=${username}`);
+            const userInfo= await response.json();
+            localStorage.setItem("user", JSON.stringify(userInfo));
+
+            renderUserInfoList(userInfo);
+
+        } catch (error) {
+            console.error('Error fetching UserInfo: ', error);
+        }
+
+    } // End fetchUserInfo
+
+
+    function renderUserInfoList(userInfo) {
+
+       // console.log (userInfo);
+        userInfoList.innerHTML = "";
+       
+        //const listItem = document.getElementById("userinfo-list")
+        //     const listItem = document.createElement('option');
+  
+        const listItem = `  <strong>Username:</strong>   ${userInfo.userName} <br>
+                            <strong>Email</strong>:      ${userInfo.userEmail} <br> 
+                            <strong> First Name</strong>:   ${userInfo.user_FirstName} <br>
+                            <strong> Last Name</strong>:    ${userInfo.user_LastName}`;
+       userInfoList.innerHTML = listItem;
+        
+
+    } // End renderUserInfoList
+    
+    ///CODE TO UPDATE USER NAME OF USER:
+    
+    updateUserNameButton.addEventListener('click', () => {
+        updateUserNameContainer.style.display = 'block';
+        userInfoContainer.style.display = 'block';
+        updateUserNameForm.reset();
+
+        
+    });//End UserInfobutton listener
+
+    // MOVE FROM USRE INFO SCREEN BACK TO ACTIVITIES WHEN YOU CLICK CANCEL
+    ReturnHomeButton.addEventListener('click', () => {
+        userContainer.style.display = 'block';
+        userInfoContainer.style.display = 'none';
+    });//End ReturnHome button listener
+
+    cancelUpdateUserButton.addEventListener('click', () => {
+        updateUserNameContainer.style.display = 'none';
+        userInfoContainer.style.display = 'block';
+    });//End CancelUserUpdate  button listener
+    deleteUserButton.addEventListener('click', () => {
+        
+        loginContainer.style.display = 'block';
+        userInfoContainer.style.display = 'none';
+
+    });//End DeleteUserbutton listener
+    
+    saveUserInfoButton.addEventListener("click", async (event) => {
+
+        event.preventDefault();
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
+        const OldUserName= loggedInUser.userName;
+        const updatedNewUserName=updateNewUserName.value;
+
+        if (updateNewUserName.value) {
+
+            const newUserNameObject =
+            {
+                
+                oldUserName: OldUserName,
+                newUserName: updatedNewUserName
+               
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5289/users`, 
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newUserNameObject)
+            });
+               //const newlyCreatedUser = await response.json();
+               
+
+               
+               const user = JSON.parse(localStorage.getItem("user"));
+               user.newUserName = updateNewUserName.value;
+               localStorage.setItem("user", JSON.stringify(user));
+               fetchUserInfo(user.newUserName)
+               updateUserNameContainer.style.display = 'none';
+                userInfoContainer.style.display = "block";
+              
+            }
+            catch (error) {
+                console.error("Error updating username: ", error);
+                alert();
+            }
+        }
+        else {
+            alert("Username cannot be blank");
+        }
+    }); // End of updateusernameForm.addEventListener 
 }) //EndDOMContentLoaded listener
