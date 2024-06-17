@@ -280,6 +280,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Content-Type': 'application/json'
                 }
             });
+
+            localStorage.removeItem('user');
+            document.getElementById('username').value = "";
+            
     }); // END of deleteUserButton Listner
 
     function refreshUserActivityList() {
