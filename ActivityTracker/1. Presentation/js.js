@@ -270,17 +270,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }); //End of cancelAddActivityButton listner
   
-    // deleteUserButton.addEventListener('click', async () => {
-    //     const tempUserField = document.getElementById('tempDeleteUserInput');
+    deleteUserButton.addEventListener('click', async () => {
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
 
-    //     const response = await fetch
-    //         (`http://localhost:5289/users?userName=${tempUserField.value}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         });
-    // }); // END of deleteUserButton Listner
+        const response = await fetch
+            (`http://localhost:5289/users?userName=${loggedInUser.userName}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    }); // END of deleteUserButton Listner
 
     function refreshUserActivityList() {
         //get the current user from local storage, then get the user's activities
