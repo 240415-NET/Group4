@@ -47,7 +47,7 @@
             <p><label>Email:</label> <input type="text" id="create-new-email" placeholder="email"></p><br>
             <p><label>First Name:</label> <input type="text" id="create-new-first-name" placeholder="firstname"></p><br>
             <p><label>Last Name:</label> <input type="text" id="create-new-last-name" placeholder="last name"></p><br>
-            <p><button type="submit" id="create-user-button">Create</button>
+            <p><label><button type="submit" id="create-user-button">Create</button></label>
                 <button id="cancel-create-user-button">Cancel</button></p>
 
         </form>
@@ -55,8 +55,9 @@
     </div>
 
     <!-- Screen when a user is logged in -->
-    <div id = "user-info-button-container"  style="display: none; width: 50%; margin-right: 0; margin-left: auto; padding: 0;">
-        <button id="user-info-button">My Profile</button>
+    <div id = "user-info-button-container"  style="display: none; margin-right: 0; margin-left: auto; padding: 0;">
+        <button id="user-info-button" style="width: 85px;">My Profile</button>
+        <button id="logout-button" style ="width: 85px;">Logout</button>
         </div>
   
     <div id="logged-in-user-container" style="display: none;">
@@ -77,21 +78,23 @@
         <br>
         <br>
 
-        <button id="logout-button">Logout</button>
+        
 
 
     </div>
 
     <div id="add-activity-container" style="display: none;">
         <h2>Add a new Activity</h2>
-        <form id="add-activity-form"; display: table;>
+        <form id="add-activity-form" style="display: table;">
             
                 <p><label>Description:</label> <input type="text" id="description" placeholder="description" required></p><br>
                 <p><label>Person Name:</label> <input type="text" id="nameOfPerson" placeholder="John Doe" required></p><br>
                 <p><label>Date:</label><input type="Date" id="date" required></p><br>
                 <p><label>Time:</label><input type="Time" id="time" required></p><br><br>
-                <p style="text-align: center;"><button type="submit" id="submitAddActivityButton" style="margin-left: 5px;">Add Activity</button>
-                    <button type="reset" id="cancel-add-activity-button" style="margin-left: 5px;">Cancel</button> </p>
+                <p><label>
+                    <button type="submit" id="submitAddActivityButton" style="margin-right: 0px; margin-left: auto;">Add Activity</button></label>
+                    <button type="reset" id="cancel-add-activity-button" style="margin-left: 0px; margin-right: auto;">Cancel</button>
+                </p>
             
             
         </form>
@@ -125,7 +128,7 @@
             
                 <!-- <p><label>Old UserName:</label> <input type="text" id="update-old-username" placeholder="" required></p><br>  -->
         <p><label>New UserName:</label> <input type="text" id="update-new-username" placeholder="" required></p><br>
-        <p><button type="submit" id="save-userInfo-button" >Save</button> 
+        <p><label><button type="submit" id="save-userInfo-button" >Save</button> </label>
         <button type="reset" id="cancel-updateUser-button" >Cancel</button></p>
             
             

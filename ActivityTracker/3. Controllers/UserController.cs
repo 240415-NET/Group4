@@ -52,7 +52,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult<string>> DeleteUser(string userName, Guid userId = default)
+    public async Task<ActionResult<string>> DeleteUser(string userName)
     {
         try
         {

@@ -97,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
         userContainer.style.display = 'block';
         showCreateActivityForm.style.display = 'none';
         userInfoButtonContainer.style.display="block";
+        userInfoButtonContainer.style.display="block";
+        updateUserNameContainer.style.display = "none";
         
 
         fetchUserActivities(user.userName);
@@ -112,6 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
         loginContainerHeader.style.display = 'block';
         userContainer.style.display = 'none';
         showCreateActivityForm.style.display = 'none';
+        userInfoButtonContainer.style.display = "none";
+        updateUserNameContainer.style.display = "none";
+        userInfoContainer.style.display="none";
 
     }); //end of the logoutButton event listener
 
@@ -197,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const listItem = document.createElement('option');
             const completedStatus = activity.isComplete ? ' : COMPLETED' : ' ';
             listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}  ${completedStatus}`;
-
             listItem.value = activity.activityId;
             activityList.add(listItem);
         });
@@ -328,6 +332,8 @@ document.addEventListener("DOMContentLoaded", () => {
         userContainer.style.display = 'none';
         userInfoContainer.style.display = 'block';
         userInfoButtonContainer.style.display = 'block';
+        showCreateActivityForm.style.display = "none";
+        
         
     });//End UserInfo button listener
 
@@ -335,7 +341,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ReturnHomeButton.addEventListener('click', () => {
         userContainer.style.display = 'block';
         userInfoContainer.style.display = 'none';
-        userInfoButtonContainer.style.display = 'none';
+        userInfoButtonContainer.style.display = 'block';
+        updateUserNameContainer.style.display = "none";
     });//End ReturnHome  button listener
 
      //Listening for a click on the userInfo button
@@ -395,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ReturnHomeButton.addEventListener('click', () => {
         userContainer.style.display = 'block';
         userInfoContainer.style.display = 'none';
-        userInfoButtonContainer.style.display='none';
+        userInfoButtonContainer.style.display='block';
     });//End ReturnHome button listener
 
     cancelUpdateUserButton.addEventListener('click', () => {
