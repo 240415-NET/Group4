@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Divs/Forms
     const loginContainer = document.getElementById("login-container");
+    const loginContainerHeader = document.getElementById("login-container-header");
     const userContainer = document.getElementById("logged-in-user-container");
     const createUserContainer = document.getElementById("create-new-user-container");
     const userInfoContainer = document.getElementById("user-info-container");
+    const userInfoButtonContainer = document.getElementById("user-info-button-container");
     const activityForm = document.getElementById('add-activity-form');
     const updateUserNameContainer = document.getElementById('update-username-container');
     const updateUserNameForm = document.getElementById('update-username-form');
@@ -90,9 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateUIForLoggedInUser(user) {
 
         loginContainer.style.display = 'none';
-        welcomeMessage.textContent = `Welcome ${user.userName}!`;
+        loginContainerHeader.style.display= 'none';
+        welcomeMessage.textContent = `Welcome, ${user.userName}!`;
         userContainer.style.display = 'block';
         showCreateActivityForm.style.display = 'none';
+        userInfoButtonContainer.style.display="block";
+        userInfoButtonContainer.style.display="block";
+        updateUserNameContainer.style.display = "none";
         
 
         fetchUserActivities(user.userName);
@@ -105,8 +111,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         usernameInput.value = null;
         loginContainer.style.display = 'block';
+        loginContainerHeader.style.display = 'block';
         userContainer.style.display = 'none';
         showCreateActivityForm.style.display = 'none';
+        userInfoButtonContainer.style.display = "none";
+        updateUserNameContainer.style.display = "none";
+        userInfoContainer.style.display="none";
 
     }); //end of the logoutButton event listener
 
@@ -116,12 +126,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // MOVE FROM LOG-IN SCREEN TO CREATE USER SCREEN WHEN YOU CLICK CREATE USER
     showCreateUserButton.addEventListener('click', () => {
         loginContainer.style.display = 'none';
+        loginContainerHeader.style.display = 'none';
         createUserContainer.style.display = 'block';
     });//End create user button listener
 
     // MOVE FROM CREATE USER SCREEN BACK TO LOG-IN WHEN YOU CLICK CANCEL
     cancelCreateUserButton.addEventListener('click', () => {
         loginContainer.style.display = 'block';
+        loginContainerHeader.style.display = 'block';
         createUserContainer.style.display = 'none';
     });//End cancel create user button listener
 
@@ -319,6 +331,9 @@ document.addEventListener("DOMContentLoaded", () => {
     userInfoButton.addEventListener('click', () => {
         userContainer.style.display = 'none';
         userInfoContainer.style.display = 'block';
+        userInfoButtonContainer.style.display = 'block';
+        showCreateActivityForm.style.display = "none";
+        
         
     });//End UserInfo button listener
 
@@ -326,6 +341,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ReturnHomeButton.addEventListener('click', () => {
         userContainer.style.display = 'block';
         userInfoContainer.style.display = 'none';
+        userInfoButtonContainer.style.display = 'block';
+        updateUserNameContainer.style.display = "none";
     });//End ReturnHome  button listener
 
      //Listening for a click on the userInfo button
@@ -375,6 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUserNameButton.addEventListener('click', () => {
         updateUserNameContainer.style.display = 'block';
         userInfoContainer.style.display = 'block';
+        userInfoButtonContainer.style.display='block';
         updateUserNameForm.reset();
 
         
@@ -384,16 +402,20 @@ document.addEventListener("DOMContentLoaded", () => {
     ReturnHomeButton.addEventListener('click', () => {
         userContainer.style.display = 'block';
         userInfoContainer.style.display = 'none';
+        userInfoButtonContainer.style.display='block';
     });//End ReturnHome button listener
 
     cancelUpdateUserButton.addEventListener('click', () => {
         updateUserNameContainer.style.display = 'none';
         userInfoContainer.style.display = 'block';
+        userInfoButtonContainer.style.display='block';
     });//End CancelUserUpdate  button listener
     deleteUserButton.addEventListener('click', () => {
         
         loginContainer.style.display = 'block';
+        loginContainerHeader.style.display = 'block';
         userInfoContainer.style.display = 'none';
+        userInfoButtonContainer.style.display = 'none';
 
     });//End DeleteUserbutton listener
     
@@ -433,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
                fetchUserInfo(user.newUserName)
                updateUserNameContainer.style.display = 'none';
                 userInfoContainer.style.display = "block";
+                userInfoButtonContainer.style.display = "block";
               
             }
             catch (error) {
