@@ -85,20 +85,33 @@
 
     <div id="add-activity-container" style="display: none;">
         <h2>Add a new Activity</h2>
-        <form id="add-activity-form" style="display: table;">
-            
-                <p><label>Description:</label> <input type="text" id="description" placeholder="description" required></p><br>
-                <p><label>Person Name:</label> <input type="text" id="nameOfPerson" placeholder="John Doe" required></p><br>
-                <p><label>Date:</label><input type="Date" id="date" required></p><br>
-                <p><label>Time:</label><input type="Time" id="time" required></p><br><br>
-                <p><label>
-                    <button type="submit" id="submitAddActivityButton" style="margin-right: 0px; margin-left: auto;">Add Activity</button></label>
-                    <button type="reset" id="cancel-add-activity-button" style="margin-left: 0px; margin-right: auto;">Cancel</button>
-                </p>
-            
-            
+        <form id="add-activity-form">
+            <p>
+                <label style="text-align: left;">Description:</label> 
+                <input type="text" id="description" placeholder="description" required>
+            </p>
+            <p>
+                <label style="text-align: left;">Person Name:</label> 
+                <input type="text" id="nameOfPerson" placeholder="John Doe" required>
+            </p>
+            <p>
+                <label style="text-align: left;">Date:</label>
+                <input type="date" id="date" required>
+            </p>
+            <p>
+                <label style="text-align: left;">Time:</label>
+                <input type="time" id="time" required>
+            </p>
+            <div id="button-container">
+                <button type="submit" id="submitAddActivityButton">Add Activity</button>
+                <button type="reset" id="cancel-add-activity-button">Cancel</button>
+            </div>
         </form>
     </div>
+    
+    
+    
+    
 
     <div id="user-info-container" style="display:none">
 
