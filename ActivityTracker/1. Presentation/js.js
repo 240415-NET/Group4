@@ -198,11 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderActivityList(activities) {
 
         activityList.innerHTML = '';
-
-        activities.forEach(activity => {
+        
+        const sortedActivities = activities.sort(
+            (a, b) => new Date(a.date_OfActivity + " " + a.time_OfActivity) 
+                    - new Date(b.date_OfActivity + " " + b.time_OfActivity));
+ 
+        sortedActivities.forEach(activity => {
             const listItem = document.createElement('option');
             const isActivityCompleted = activity.isComplete;
-
+     
             listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}`;
             listItem.value = activity.activityId;
             listItem.style.color = isActivityCompleted ? '#969696' : '#003399';  // #969696 is grey, #003399 is dark blue
