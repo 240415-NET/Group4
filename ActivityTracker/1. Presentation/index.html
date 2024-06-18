@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity Tracker</title>
+    <link rel="stylesheet" href="styles.css">
 
     <style>
         form  { display: table;}
@@ -14,19 +15,24 @@
         button {display: table-cell; display: pad;}
                 
     </style>
+
+
 </head>
 
 <body>
 
 
     <h1>Activity Tracker</h1>
-
-    <div id="login-container">
-        <h2>Login</h2>
-        <input type="text" id="username" placeholder="username">
-        <br>
-        <br>
+    <div id = "login-container-header" style="padding: 0px">
+        <h2>Sign in to get started:</h2>
+    </div>
+    <div id="login-container" style="border: 1px solid #162b25; padding:30px 8px 50px 8px">
+        <input type="text" id="username" placeholder="Enter your username">
+        <br><br>
         <button id="login-button">Login</button>
+        <br><br>
+        <h3>or</h3>
+        <br>
         <button id="show-create-user-button">Create User</button>
     </div>
 
@@ -34,41 +40,43 @@
     <!-- Screen to create a new user -->
     <div id="create-new-user-container" style="display:none;">
         <h2>Create User</h2>
-        <form id="create-user-form">
-            Username: <input type="text" id="create-new-username" placeholder="new username" required>
-            <br><br>
-            Email: <input type="text" id="create-new-email" placeholder="email">
-            <br><br>
-            First Name: <input type="text" id="create-new-first-name" placeholder="firstname">
-            <br><br>
-            Last Name:<input type="text" id="create-new-last-name" placeholder="last name">
-            <br><br>
-            <button type="submit" id="create-user-button">Create</button>
+        <form id="create-user-form" style ="display: table">
+
+     
+            <p><label>Username:</label> <input type="text" id="create-new-username" placeholder="new username" required></p><br>
+            <p><label>Email:</label> <input type="text" id="create-new-email" placeholder="email"></p><br>
+            <p><label>First Name:</label> <input type="text" id="create-new-first-name" placeholder="firstname"></p><br>
+            <p><label>Last Name:</label> <input type="text" id="create-new-last-name" placeholder="last name"></p><br>
+            <p><button type="submit" id="create-user-button">Create</button>
+                <button id="cancel-create-user-button">Cancel</button></p>
 
         </form>
         <br>
-        <button id="cancel-create-user-button">Cancel</button>
     </div>
 
     <!-- Screen when a user is logged in -->
+    <div id = "user-info-button-container"  style="display: none; width: 50%; margin-right: 0; margin-left: auto; padding: 0;">
+        <button id="user-info-button">My Profile</button>
+        </div>
+  
     <div id="logged-in-user-container" style="display: none;">
         <h2 id="welcome-message"></h2>
+        <p>Here are your activities:</p><br>
 
-        <h4>Your Activites</h4>
-
-
-        <select name="" id="activity-list" size="10" style="width: 40%">
+      
+        <select name="" id="activity-list" size="10" stye="width: 250%;">
         </select>
         <br>
         <br>
         <button id="create-activity-button">Create New Activity</button>
-        <button id="update-activity-button">Mark Activity Completed</button>
+        <button id="update-activity-button">Mark as Completed</button>
         <button id="delete-activity-button">Delete Activity</button>
+
         <br>
         <br>
-        <button id="user-info-button">User Info</button>
         <br>
         <br>
+
         <button id="logout-button">Logout</button>
 
 
@@ -82,7 +90,7 @@
                 <p><label>Person Name:</label> <input type="text" id="nameOfPerson" placeholder="John Doe" required></p><br>
                 <p><label>Date:</label><input type="Date" id="date" required></p><br>
                 <p><label>Time:</label><input type="Time" id="time" required></p><br><br>
-                <p><button type="submit" id="submitAddActivityButton" style="margin-left: 5px;">Add Activity</button>
+                <p style="text-align: center;"><button type="submit" id="submitAddActivityButton" style="margin-left: 5px;">Add Activity</button>
                     <button type="reset" id="cancel-add-activity-button" style="margin-left: 5px;">Cancel</button> </p>
             
             
@@ -102,26 +110,28 @@
         <!-- <select name="" id="userinfo-list" size="10" style="width: 40%">
         </select> -->
         <br>
-        <br>
         <button id="update-username-button">Update Username</button>
         <button id="delete-user-button">Delete User</button> 
         <button id="return-home-button">Return to Home</button> 
 
         <br>   
         <br>
+    </div>
+    
 
     <div id="update-username-container" style="display: none;">
-        <h4>Update UserName</h4>
-        <form id="update-username-form"; display: table;>
+    <h4>Update UserName</h4>
+    <form id="update-username-form" style="display: table;">
             
                 <!-- <p><label>Old UserName:</label> <input type="text" id="update-old-username" placeholder="" required></p><br>  -->
-                <p><label>New UserName:</label> <input type="text" id="update-new-username" placeholder="" required></p><br>
-                <p><button type="submit" id="save-userInfo-button" >Save</button> 
-                <button type="reset" id="cancel-updateUser-button" style="margin-left: 50px;">Cancel</button> </p> 
+        <p><label>New UserName:</label> <input type="text" id="update-new-username" placeholder="" required></p><br>
+        <p><button type="submit" id="save-userInfo-button" >Save</button> 
+        <button type="reset" id="cancel-updateUser-button" >Cancel</button></p>
             
             
-         </form> 
+    </form> 
     </div>
+
     <script src="js.js"></script>
 
 </body>
