@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             catch (error) {
                 console.error('Error logging in: ', error);
-                alert(`Unable to login with username: ${username}`);
+                alert(`${username} does not exist. Please try again.`);
             }
 
         } //End If to check username for content
@@ -169,7 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             catch (error) {
                 console.error("Error creating user: ", error);
-                alert();
+                alert(`${newUserNameToCreateFromUser.value} already exists. Please select another username.`);
+                newUserNameToCreateFromUser.value ="";
             }
         }
         else {
@@ -403,6 +404,8 @@ document.addEventListener("DOMContentLoaded", () => {
         userContainer.style.display = 'block';
         userInfoContainer.style.display = 'none';
         userInfoButtonContainer.style.display='block';
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        updateUIForLoggedInUser(storedUser);
     });//End ReturnHome button listener
 
     cancelUpdateUserButton.addEventListener('click', () => {
@@ -460,7 +463,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             catch (error) {
                 console.error("Error updating username: ", error);
-                alert();
+               // alert(`${updateNewUserName.value} already exists. Please select another username.`);
+
             }
         }
         else {
