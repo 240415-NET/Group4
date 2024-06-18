@@ -201,9 +201,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         activities.forEach(activity => {
             const listItem = document.createElement('option');
-            const completedStatus = activity.isComplete ? ' : COMPLETED' : ' ';
-            listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}  ${completedStatus}`;
+            const isActivityCompleted = activity.isComplete;
+
+            listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}`;
             listItem.value = activity.activityId;
+            listItem.style.color = isActivityCompleted ? '#969696' : '#003399';  // #969696 is grey, #003399 is dark blue
+            listItem.style.textDecoration = isActivityCompleted ? 'line-through' : '';
             activityList.add(listItem);
         });
 
