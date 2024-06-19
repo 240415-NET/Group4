@@ -8,12 +8,26 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        form  { display: table;}
-        p{display: table-row;  }
-        label { display: table-cell; }
-        input { display: table-cell; }
-        button {display: table-cell; display: pad;}
-                
+        form {
+            display: table;
+        }
+
+        p {
+            display: table-row;
+        }
+
+        label {
+            display: table-cell;
+        }
+
+        input {
+            display: table-cell;
+        }
+
+        button {
+            display: table-cell;
+            display: pad;
+        }
     </style>
 
 
@@ -23,7 +37,7 @@
 
 
     <h1>Activity Tracker</h1>
-    <div id = "login-container-header" style="padding: 0px">
+    <div id="login-container-header" style="padding: 0px">
         <h2>Sign in to get started:</h2>
     </div>
     <div id="login-container" style="border: 1px solid #162b25; padding:30px 8px 50px 8px">
@@ -40,31 +54,33 @@
     <!-- Screen to create a new user -->
     <div id="create-new-user-container" style="display:none;">
         <h2>Create User</h2>
-        <form id="create-user-form" style ="display: table">
+        <form id="create-user-form" style="display: table">
 
-     
-            <p><label>Username:</label> <input type="text" id="create-new-username" placeholder="new username" required></p><br>
+
+            <p><label>Username:</label> <input type="text" id="create-new-username" placeholder="new username" required>
+            </p><br>
             <p><label>Email:</label> <input type="text" id="create-new-email" placeholder="email"></p><br>
             <p><label>First Name:</label> <input type="text" id="create-new-first-name" placeholder="firstname"></p><br>
             <p><label>Last Name:</label> <input type="text" id="create-new-last-name" placeholder="last name"></p><br>
             <p><label><button type="submit" id="create-user-button">Create</button></label>
-                <button id="cancel-create-user-button">Cancel</button></p>
+                <button id="cancel-create-user-button">Cancel</button>
+            </p>
 
         </form>
         <br>
     </div>
 
     <!-- Screen when a user is logged in -->
-    <div id = "user-info-button-container"  style="display: none; margin-right: 0; margin-left: auto; padding: 0;">
+    <div id="user-info-button-container" style="display: none; margin-right: 0; margin-left: auto; padding: 0;">
         <button id="user-info-button" style="width: 85px;">My Profile</button>
-        <button id="logout-button" style ="width: 85px;">Logout</button>
-        </div>
-  
+        <button id="logout-button" style="width: 85px;">Logout</button>
+    </div>
+
     <div id="logged-in-user-container" style="display: none;">
         <h2 id="welcome-message"></h2>
-        <p>Here are your activities:</p><br>
+        <p style="text-align: left;">Here are your activities:</p><br>
 
-      
+
         <select name="" id="activity-list" size="10" style="width: 100%;">
         </select>
         <br>
@@ -78,61 +94,89 @@
         <br>
         <br>
 
-        
+
 
 
     </div>
 
     <div id="add-activity-container" style="display: none;">
         <h2>Add a new Activity</h2>
-        <form id="add-activity-form" style="display: table;">
-            
-                <p><label>Description:</label> <input type="text" id="description" placeholder="description" required></p><br>
-                <p><label>Person Name:</label> <input type="text" id="nameOfPerson" placeholder="John Doe" required></p><br>
-                <p><label>Date:</label><input type="Date" id="date" required></p><br>
-                <p><label>Time:</label><input type="Time" id="time" required></p><br><br>
-                <p><label>
-                    <button type="submit" id="submitAddActivityButton" style="margin-right: 0px; margin-left: auto;">Add Activity</button></label>
-                    <button type="reset" id="cancel-add-activity-button" style="margin-left: 0px; margin-right: auto;">Cancel</button>
-                </p>
-            
-            
+        <form id="add-activity-form">
+            <p>
+                <label style="text-align: left;">Description:</label>
+                <input type="text" id="description" placeholder="description" required>
+            </p>
+            <p>
+                <label style="text-align: left;">Person Name:</label>
+                <input type="text" id="nameOfPerson" placeholder="John Doe" required>
+            </p>
+            <p>
+                <label style="text-align: left;">Date:</label>
+                <input type="date" id="date" required>
+            </p>
+            <p>
+                <label style="text-align: left;">Time:</label>
+                <input type="time" id="time" required>
+            </p>
+            <div id="button-container">
+                <button type="submit" id="submitAddActivityButton">Add Activity</button>
+                <button type="reset" id="cancel-add-activity-button">Cancel</button>
+            </div>
         </form>
     </div>
 
-    <div id="user-info-container" style="display:none">
+
+
+
+
+    <div id="user-info-container" style="display:none;">
 
         <h2>User Info</h2>
         <!-- <p id="userinfo-list"></p> -->
-        <ul id="userinfo-list">
-            <li value=">Username">Username</li>
-            <li value=">Email">Email</li>
-            <li value = "First Name">First Name</li>
-            <li value = "Last Name">Last Name</li>
-        </ul>
+        <div style="align-items: center;">
+            <ul id="userinfo-list" style="text-align: left;">
+                <li value=">Username" style="text-align: left;">Username</li>
+                <li value=">Email" style="text-align: left;">Email</li>
+                <li value="First Name" style="text-align: left;">First Name</li>
+                <li value="Last Name" style="text-align: left;">Last Name</li>
+            </ul>
+        </div>
+
         <!-- <select name="" id="userinfo-list" size="10" style="width: 40%">
         </select> -->
         <br>
-        <button id="update-username-button">Update Username</button>
-        <button id="delete-user-button">Delete User</button> 
-        <button id="return-home-button">Return to Home</button> 
-
-        <br>   
+        <div style="align-items: center; width: 100%;" >
+            <button id="update-username-button">Update Username</button>
+            <button id="delete-user-button">Delete User</button>
+            <button id="return-home-button">Return to Home</button>
+        </div>
+        <br>
         <br>
     </div>
-    
+
 
     <div id="update-username-container" style="display: none;">
-    <h4>Update UserName</h4>
-    <form id="update-username-form" style="display: table;">
-            
-                <!-- <p><label>Old UserName:</label> <input type="text" id="update-old-username" placeholder="" required></p><br>  -->
-        <p><label>New UserName:</label> <input type="text" id="update-new-username" placeholder="" required></p><br>
-        <p><label><button type="submit" id="save-userInfo-button" >Save</button> </label>
-        <button type="reset" id="cancel-updateUser-button" >Cancel</button></p>
-            
-            
-    </form> 
+        <h2>Update Username</h2>
+        <form id="update-username-form">
+
+            <!-- <p><label>Old UserName:</label> <input type="text" id="update-old-username" placeholder="" required></p><br>  -->
+            <p>
+                <label style="text-align: left;">New Username:</label>
+                    <input type="text" id="update-new-username" style="padding-right: 100px;" placeholder="" required>
+                
+                
+            </p>
+            <br>
+            <div>
+                <button type="submit" id="save-userInfo-button">Save</button>
+                <button type="reset" id="cancel-updateUser-button">Cancel</button>
+            </div>
+
+
+
+
+
+        </form>
     </div>
 
     <script src="js.js"></script>
