@@ -64,8 +64,7 @@ public class UserService : IUserService
           
           if (await UserExistsAsync(userNameFromController.oldUserName))
         {
-            
-            
+                        
             return await userStorageEFRepo.UpdateUserinDBAsync(userNameFromController);
             
         }
