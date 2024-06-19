@@ -436,15 +436,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const loggedInUser = JSON.parse(localStorage.getItem('user'));
         const OldUserName= loggedInUser.userName;
         const updatedNewUserName=updateNewUserName.value;
+        const response = await fetch(`http://localhost:5289/users?userNameToFindFromFrontEnd=${updateNewUserName.value}`);
+
 
         if (updateNewUserName.value) {
-            const response = await fetch(`http://localhost:5289/users?userNameToFindFromFrontEnd=${updateNewUserName}`);
-            if(response)
-                {
+            if(response.status==200)
+                
                     
-                    alert(`${updateNewUserName.value} allready exists. Please try a different one.`);
-                    updateNewUserName.value= ""
-                }
+                    alert(`${updateNewUserName.value} already exists. Please try a different one.`);
+                    //updateNewUserName.value= ""
+                
                 else{
             const newUserNameObject =
             {
