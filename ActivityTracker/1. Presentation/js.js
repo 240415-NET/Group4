@@ -438,7 +438,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const updatedNewUserName=updateNewUserName.value;
 
         if (updateNewUserName.value) {
-
+            const response = await fetch(`http://localhost:5289/users?userNameToFindFromFrontEnd=${updateNewUserName}`);
+            if(response)
+                {
+                    
+                    alert(`${updateNewUserName.value} allready exists. Please try a different one.`);
+                    updateNewUserName.value= ""
+                }
+                else{
             const newUserNameObject =
             {
                 
@@ -467,13 +474,14 @@ document.addEventListener("DOMContentLoaded", () => {
                updateUserNameContainer.style.display = 'none';
                 userInfoContainer.style.display = "block";
                 userInfoButtonContainer.style.display = "block";
-              
+        
             }
             catch (error) {
                 console.error("Error updating username: ", error);
                // alert(`${updateNewUserName.value} already exists. Please select another username.`);
 
             }
+        }
         }
         else {
             alert("Username cannot be blank");
