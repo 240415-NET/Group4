@@ -203,14 +203,15 @@ document.addEventListener("DOMContentLoaded", () => {
             (a, b) => new Date(a.date_OfActivity + " " + a.time_OfActivity) 
                     - new Date(b.date_OfActivity + " " + b.time_OfActivity));
  
-        sortedActivities.forEach(activity => {
-            const listItem = document.createElement('option');
+        sortedActivities.forEach(activity => {  
             const isActivityCompleted = activity.isComplete;
      
+            const listItem = document.createElement('option');
             listItem.text = `${activity.activity_Description}, ${activity.nameOfPerson}, ${activity.date_OfActivity}, ${activity.time_OfActivity}`;
             listItem.value = activity.activityId;
-            listItem.style.color = isActivityCompleted ? '#969696' : '#003399';  // #969696 is grey, #003399 is dark blue
-            listItem.style.textDecoration = isActivityCompleted ? 'line-through' : '';
+            listItem.style.color = isActivityCompleted ? '#969696' : '#003399';  // #969696 is a light gray, #003399 is a dark blue
+            listItem.style.textDecoration = isActivityCompleted ? 'line-through' : 'none';
+
             activityList.add(listItem);
         });
 
